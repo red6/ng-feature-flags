@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/red6/ng-feature-flags/master.svg?style=flat-square)](https://travis-ci.orgred6/ng-feature-flags)
+[![Build Status](https://img.shields.io/travis/red6/ng-feature-flags/master.svg?style=flat-square)](https://travis-ci.org/red6/ng-feature-flags)
 [![npm](https://img.shields.io/npm/v/red6/ng-feature-flags.svg?style=flat-square)](https://www.npmjs.com/package/red6/ng-feature-flags)
 
 ## @red6/ng-feature-flags
