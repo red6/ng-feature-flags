@@ -1,0 +1,13 @@
+# compiled output
+.ng_build
+
+# dependencies
+/node_modules
+
+# output
+/dist
+
+# misc
+/coverage
+npm-debug.log
+yarn-error.log
