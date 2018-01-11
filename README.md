@@ -1,5 +1,7 @@
-[![Build Status](https://img.shields.io/travis/red6/ng-feature-flags/master.svg?style=flat-square)](https://travis-ci.org/red6/ng-feature-flags)
-[![npm](https://img.shields.io/npm/v/red6/ng-feature-flags.svg?style=flat-square)](https://www.npmjs.com/package/red6/ng-feature-flags)
+[![Build Status](https://travis-ci.org/red6/ng-feature-flags.svg?branch=master)](https://travis-ci.org/red6/ng-feature-flags)
+[![Maintainability](https://api.codeclimate.com/v1/badges/92aba9a4894d7c2f010b/maintainability)](https://codeclimate.com/github/red6/ng-feature-flags/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/92aba9a4894d7c2f010b/test_coverage)](https://codeclimate.com/github/red6/ng-feature-flags/test_coverage)
+[![npm version](https://badge.fury.io/js/%40red6%2Fng-feature-flags.svg)](https://badge.fury.io/js/%40red6%2Fng-feature-flags)
 
 ## @red6/ng-feature-flags
 
@@ -12,14 +14,14 @@ Inspired by [angular-feature-toggle](https://github.com/yairhaimo/angular-featur
 npm install @red6/ng-feature-flags --save
 ```
 
-### Configuration
+### Configuration feature flags
 
 @red6/ng-feature-flags uses a semver notation per feature and expects a configuration like this:
 
 ```js
 {
-    "feature1": "1.5.1",
-    "feature2": "0.5.6"
+    feature1: "1.5.1",
+    feature2: "0.5.6"
 }
 ```
 
@@ -35,6 +37,29 @@ This configuration toggles features inside the code according to their version c
 ```
 
 For more information regarding the semver notation head over to the [semver](http://semver.org/) and the [node-semver](https://github.com/npm/node-semver) sites.
+
+### Getting Started
+
+After installing, include `NgFeatureFlagsModule` in your application module like:
+
+```js
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgFeatureFlagsModule } from '@red6/ng-feature-flags';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    NgFeatureFlagsModule.forRoot({feature1: "1.5.1", feature2: "0.5.6"}),
+    BrowserModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
 
 ### Toggle features using a directive
 
