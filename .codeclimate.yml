@@ -11,3 +11,7 @@ exclude_paths:
 ratings:
    paths:
    - "src/**/**.ts"
+plugins:
+  tslint:
+    enabled: true
+    config: tslint.json
