@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FeatureFlagsService, IFeatures } from '../lib/feature-flags.service';
+import { NgFeatureFlagsModule } from '../lib';
+import { IFeatures } from '../lib/feature-flags.service';
 import { HideIfFeatureDirective } from '../lib/hide-if-feature.directive';
 
 const mockFeatures: IFeatures = {
@@ -35,16 +35,11 @@ describe('HideIfFeatureDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule
+        NgFeatureFlagsModule.forRoot(mockFeatures)
       ],
       declarations: [
-        HideIfFeatureDirective,
         TestComponent
       ],
-      providers: [{
-        provide: FeatureFlagsService,
-        useFactory: () => new FeatureFlagsService(mockFeatures)
-      }]
     });
   });
 

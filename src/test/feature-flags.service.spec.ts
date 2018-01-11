@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { NgFeatureFlagsModule } from '../lib';
 import { FeatureFlagsService, IFeatures } from '../lib/feature-flags.service';
 
 const mockFeatures: IFeatures = {
@@ -10,10 +11,9 @@ describe('FeatureFlagsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{
-        provide: FeatureFlagsService,
-        useFactory: () => new FeatureFlagsService(mockFeatures)
-      }]
+      imports: [
+        NgFeatureFlagsModule.forRoot(mockFeatures),
+      ]
     });
 
     featureFlagsService = TestBed.get(FeatureFlagsService);

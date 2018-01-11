@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FeatureFlagsService, IFeatures } from '../lib/feature-flags.service';
+import { NgFeatureFlagsModule } from '../lib';
+import { IFeatures } from '../lib/feature-flags.service';
 import { ShowIfFeatureDirective } from '../lib/show-if-feature.directive';
 
 const mockFeatures: IFeatures = {
@@ -35,16 +35,11 @@ describe('ShowIfFeatureDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CommonModule
+        NgFeatureFlagsModule.forRoot(mockFeatures)
       ],
       declarations: [
-        ShowIfFeatureDirective,
         TestComponent
       ],
-      providers: [{
-        provide: FeatureFlagsService,
-        useFactory: () => new FeatureFlagsService(mockFeatures)
-      }]
     });
   });
 
