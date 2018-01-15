@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/red6/ng-feature-flags/compare/v0.1.1...v0.2.0) (2018-01-15)
+
+
+### Features
+
+* **Directive:** implement `ngIfThen` and `ngIfElse` ([3491e86](https://github.com/red6/ng-feature-flags/commit/3491e86))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/red6/ng-feature-flags/compare/v0.1.0...v0.1.1) (2018-01-11)
 
