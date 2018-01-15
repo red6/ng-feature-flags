@@ -18,6 +18,14 @@ export class HideIfFeatureDirective extends NgIf {
     this.ngIf = !this.featureFlagsService.isVersion(featureName, featureVersion);
   }
 
+  @Input() set hideIfThenFeature(templateRef: TemplateRef<NgIfContext>) {
+    this.ngIfThen = templateRef;
+  }
+
+  @Input() set hideIfElseFeature(templateRef: TemplateRef<NgIfContext>) {
+    this.ngIfElse = templateRef;
+  }
+
   constructor(_viewContainer: ViewContainerRef,
               templateRef: TemplateRef<NgIfContext>,
               private featureFlagsService: FeatureFlagsService) {
