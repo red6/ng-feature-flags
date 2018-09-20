@@ -3,7 +3,7 @@ import { NgFeatureFlagsModule } from '../lib';
 import { FeatureFlagsService, IFeatures } from '../lib/feature-flags.service';
 
 const mockFeatures: IFeatures = {
-  'testFeature': '1.0.0'
+  testFeature: '1.0.0'
 };
 
 describe('FeatureFlagsService', () => {
@@ -11,9 +11,7 @@ describe('FeatureFlagsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgFeatureFlagsModule.forRoot(mockFeatures),
-      ]
+      imports: [NgFeatureFlagsModule.forRoot(mockFeatures)]
     });
 
     featureFlagsService = TestBed.get(FeatureFlagsService);
@@ -27,9 +25,13 @@ describe('FeatureFlagsService', () => {
     it('should handle semver correctly', () => {
       expect(featureFlagsService.isVersion('testFeature', '*')).toEqual(true);
       expect(featureFlagsService.isVersion('testFeature', '1.x')).toEqual(true);
-      expect(featureFlagsService.isVersion('testFeature', '~2.0.0')).toEqual(false);
+      expect(featureFlagsService.isVersion('testFeature', '~2.0.0')).toEqual(
+        false
+      );
 
-      expect(featureFlagsService.isVersion('notExistingFeature', '*')).toEqual(false);
+      expect(featureFlagsService.isVersion('notExistingFeature', '*')).toEqual(
+        false
+      );
     });
   });
 });

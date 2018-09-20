@@ -6,8 +6,8 @@ import { FeatureFlagsService } from './feature-flags.service';
   selector: '[showIfFeature]'
 })
 export class ShowIfFeatureDirective extends NgIf {
-
-  @Input() set showIfFeature(feature: string) {
+  @Input()
+  set showIfFeature(feature: string) {
     const args = feature.split(/\s+/);
     const featureName = args[0];
     let featureVersion = '*';
@@ -18,18 +18,21 @@ export class ShowIfFeatureDirective extends NgIf {
     this.ngIf = this.featureFlagsService.isVersion(featureName, featureVersion);
   }
 
-  @Input() set showIfThenFeature(templateRef: TemplateRef<NgIfContext>) {
+  @Input()
+  set showIfThenFeature(templateRef: TemplateRef<NgIfContext>) {
     this.ngIfThen = templateRef;
   }
 
-  @Input() set showIfElseFeature(templateRef: TemplateRef<NgIfContext>) {
+  @Input()
+  set showIfElseFeature(templateRef: TemplateRef<NgIfContext>) {
     this.ngIfElse = templateRef;
   }
 
-  constructor(_viewContainer: ViewContainerRef,
-              templateRef: TemplateRef<NgIfContext>,
-              private featureFlagsService: FeatureFlagsService) {
-
+  constructor(
+    _viewContainer: ViewContainerRef,
+    templateRef: TemplateRef<NgIfContext>,
+    private featureFlagsService: FeatureFlagsService
+  ) {
     super(_viewContainer, templateRef);
   }
 }

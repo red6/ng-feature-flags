@@ -3,22 +3,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NgFeatureFlagsModule } from '../lib';
 import { IFeatures } from '../lib/feature-flags.service';
-import { ShowIfFeatureDirective } from '../lib/show-if-feature.directive';
 
 const mockFeatures: IFeatures = {
-  'testFeature': '1.0.0',
-  'testFeature2': '1.0.0'
+  testFeature: '1.0.0',
+  testFeature2: '1.0.0'
 };
 
-@Component({selector: 'test-cmp', template: ''})
+@Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
   feature = '';
   feature2 = '';
 }
 
-function createTestComponent(template: string): ComponentFixture<TestComponent> {
-  return TestBed.overrideComponent(TestComponent, {set: {template: template}})
-    .createComponent(TestComponent);
+function createTestComponent(
+  template: string
+): ComponentFixture<TestComponent> {
+  return TestBed.overrideComponent(TestComponent, {
+    set: { template: template }
+  }).createComponent(TestComponent);
 }
 
 describe('ShowIfFeatureDirective', () => {
@@ -34,12 +36,8 @@ describe('ShowIfFeatureDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgFeatureFlagsModule.forRoot(mockFeatures)
-      ],
-      declarations: [
-        TestComponent
-      ],
+      imports: [NgFeatureFlagsModule.forRoot(mockFeatures)],
+      declarations: [TestComponent]
     });
   });
 
@@ -60,19 +58,24 @@ describe('ShowIfFeatureDirective', () => {
   }));
 
   it('should handle nested showIfFeature correctly', async(() => {
-    const template = '<div *showIfFeature="feature"><span class="test"></span><span *showIfFeature="feature2">hello</span></div>';
+    const template =
+      '<div *showIfFeature="feature"><span class="test"></span><span *showIfFeature="feature2">hello</span></div>';
     fixture = createTestComponent(template);
 
     getComponent().feature = 'testFeature';
     getComponent().feature2 = 'testFeature2';
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('span.test')).length).toEqual(1);
+    expect(fixture.debugElement.queryAll(By.css('span.test')).length).toEqual(
+      1
+    );
     expect(fixture.nativeElement.textContent).toEqual('hello');
 
     getComponent().feature = 'testFeature ~1.0.0';
     getComponent().feature2 = 'testFeature2 ~2.0.0';
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('span.test')).length).toEqual(1);
+    expect(fixture.debugElement.queryAll(By.css('span.test')).length).toEqual(
+      1
+    );
     expect(fixture.nativeElement.textContent).toEqual('');
   }));
 });

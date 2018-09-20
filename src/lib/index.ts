@@ -4,14 +4,11 @@ import { FeatureFlagsService, IFeatures } from './feature-flags.service';
 import { HideIfFeatureDirective } from './hide-if-feature.directive';
 import { ShowIfFeatureDirective } from './show-if-feature.directive';
 
-const DIRECTIVES = [
-  HideIfFeatureDirective,
-  ShowIfFeatureDirective
-];
+const DIRECTIVES = [HideIfFeatureDirective, ShowIfFeatureDirective];
 
 export const FEATURES = new InjectionToken<IFeatures>('FEATURES');
 
-export function featureFlagsServiceFactory(initialState) {
+function featureFlagsServiceFactory(initialState) {
   return new FeatureFlagsService(initialState);
 }
 
