@@ -27,7 +27,7 @@ npm install @red6/ng-feature-flags --save
 
 This configuration toggles features inside the code according to their version conditions.
 
-```
+```text
 //Example for "feature1" : "1.5.1"
 //^1.0.0 - true
 //~1.5.0 - true
@@ -60,7 +60,6 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-
 ### Toggle features using a directive
 
 There are two directives you can use in order to toggle features: **show-if-feature** and **hide-if-feature**.  
@@ -89,3 +88,19 @@ With a specific version:
     This is the NEW and improved admin panel
 </div>
 ```
+
+### Update features
+
+To update features you can use the update methode on the service:
+
+```js
+@Component({ ... })
+class AppComponent {
+  constructor(private featureFlagsService: FeatureFlagsService) {}
+
+  updateFeature() {
+    this.featureFlagsService.updateFeatures({ feature1: "2.0.0" });
+  }
+}
+
+````

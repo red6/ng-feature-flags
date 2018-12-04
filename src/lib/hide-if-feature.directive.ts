@@ -6,6 +6,11 @@ import { FeatureFlagsService } from './feature-flags.service';
   selector: '[hideIfFeature]'
 })
 export class HideIfFeatureDirective extends NgIf {
+  private feature: {
+    name: string;
+    version: string;
+  };
+
   @Input()
   set hideIfFeature(feature: string) {
     const args = feature.split(/\s+/);
@@ -15,10 +20,9 @@ export class HideIfFeatureDirective extends NgIf {
       featureVersion = args[1];
     }
 
-    this.ngIf = !this.featureFlagsService.isVersion(
-      featureName,
-      featureVersion
-    );
+    this.feature = { name: featureName, version: featureVersion };
+
+    this.update();
   }
 
   @Input()
@@ -34,8 +38,19 @@ export class HideIfFeatureDirective extends NgIf {
   constructor(
     _viewContainer: ViewContainerRef,
     templateRef: TemplateRef<NgIfContext>,
-    private featureFlagsService: FeatureFlagsService
+    private readonly featureFlagsService: FeatureFlagsService
   ) {
     super(_viewContainer, templateRef);
+
+    featureFlagsService.featureListChange.subscribe(() => {
+      this.update();
+    });
+  }
+
+  private update() {
+    this.ngIf = !this.featureFlagsService.isVersion(
+      this.feature.name,
+      this.feature.version
+    );
   }
 }

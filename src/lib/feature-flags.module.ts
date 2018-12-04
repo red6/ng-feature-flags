@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FeatureFlagsService, IFeatures } from './feature-flags.service';
 import { HideIfFeatureDirective } from './hide-if-feature.directive';
 import { ShowIfFeatureDirective } from './show-if-feature.directive';
+import { FEATURE_LIST } from './token';
 
-const DIRECTIVES = [HideIfFeatureDirective, ShowIfFeatureDirective];
-
-export const FEATURES = new InjectionToken<IFeatures>('FEATURES');
-
-function featureFlagsServiceFactory(initialState) {
+export function featureFlagsServiceFactory(initialState) {
   return new FeatureFlagsService(initialState);
 }
 
 @NgModule({
   imports: [CommonModule],
-  declarations: DIRECTIVES,
-  exports: DIRECTIVES
+  declarations: [HideIfFeatureDirective, ShowIfFeatureDirective],
+  exports: [HideIfFeatureDirective, ShowIfFeatureDirective]
 })
 export class NgFeatureFlagsModule {
   static forRoot(features?: IFeatures): ModuleWithProviders {
@@ -23,13 +20,13 @@ export class NgFeatureFlagsModule {
       ngModule: NgFeatureFlagsModule,
       providers: [
         {
-          provide: FEATURES,
+          provide: FEATURE_LIST,
           useValue: features ? features : {}
         },
         {
           provide: FeatureFlagsService,
           useFactory: featureFlagsServiceFactory,
-          deps: [FEATURES]
+          deps: [FEATURE_LIST]
         }
       ]
     };

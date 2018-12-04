@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NgFeatureFlagsModule } from '../lib';
-import { IFeatures } from '../lib/feature-flags.service';
+import { NgFeatureFlagsModule } from '../lib/feature-flags.module';
+import { FeatureFlagsService, IFeatures } from '../lib/feature-flags.service';
 
 const mockFeatures: IFeatures = {
   testFeature: '1.0.0',
@@ -13,6 +13,8 @@ const mockFeatures: IFeatures = {
 class TestComponent {
   feature = '';
   feature2 = '';
+
+  constructor(public featureFlagsService: FeatureFlagsService) {}
 }
 
 function createTestComponent(
@@ -56,6 +58,21 @@ describe('HideIfFeatureDirective', () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.textContent).toEqual('');
   }));
+
+  it('should handle update of features', () => {
+    const template = `<span *hideIfFeature="'testFeature ~1.0.0'">hello</span>`;
+    fixture = createTestComponent(template);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.queryAll(By.css('span')).length).toEqual(0);
+    expect(fixture.nativeElement.textContent).not.toEqual('hello');
+
+    getComponent().featureFlagsService.updateFeatures({ testFeature: '2.0.0' });
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.queryAll(By.css('span')).length).toEqual(1);
+    expect(fixture.nativeElement.textContent).toEqual('hello');
+  });
 
   it('should handle nested hideIfFeature correctly', async(() => {
     const template =
