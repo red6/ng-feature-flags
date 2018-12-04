@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/red6/ng-feature-flags/compare/v0.2.1...v0.3.0) (2018-12-04)
+
+
+### Features
+
+* **Service:** add method to update featuers ([42363b4](https://github.com/red6/ng-feature-flags/commit/42363b4))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/red6/ng-feature-flags/compare/v0.2.0...v0.2.1) (2018-09-20)
 
