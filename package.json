@@ -4,6 +4,7 @@
   "description": "Feature Flag module for Angular",
   "scripts": {
     "ng": "ng",
+    "prebuild": "rimraf dist",
     "build": "ng-packagr",
     "test": "ng test --code-coverage",
     "lint": "ng lint --type-check",
@@ -42,6 +43,8 @@
     "@angular/core": "^6.0.0",
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-angular": "^7.1.2",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^8.0.0",
@@ -57,10 +60,31 @@
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^4.1.0",
+    "prettier": "^1.15.3",
+    "pretty-quick": "^1.8.0",
+    "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
     "standard-version": "^4.4.0",
     "tslint": "^5.9.1",
     "typescript": "^2.7.0",
     "zone.js": "~0.8.26"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-angular"
+    ],
+    "rules": {
+      "scope-case": [
+        2,
+        "always",
+        "pascal-case"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

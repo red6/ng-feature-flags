@@ -52,13 +52,19 @@ describe('FeatureFlagsService', () => {
 
     it('should update features correctly', () => {
       expect(featureFlagsService.isVersion('testFeature', '1.x')).toEqual(true);
-      expect(featureFlagsService.isVersion('testFeature', '2.x')).toEqual(false);
+      expect(featureFlagsService.isVersion('testFeature', '2.x')).toEqual(
+        false
+      );
 
       featureFlagsService.updateFeatures({ testFeature: '2.0.0' });
 
-      expect(featureFlagsService.isVersion('testFeature', '1.x')).toEqual(false);
+      expect(featureFlagsService.isVersion('testFeature', '1.x')).toEqual(
+        false
+      );
       expect(featureFlagsService.isVersion('testFeature', '2.x')).toEqual(true);
-      expect(featureFlagsService.isVersion('testFeature', '3.x')).toEqual(false);
+      expect(featureFlagsService.isVersion('testFeature', '3.x')).toEqual(
+        false
+      );
     });
   });
 });

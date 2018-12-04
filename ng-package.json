@@ -2,11 +2,9 @@
   "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
   "dest": "dist",
   "workingDirectory": ".ng_build",
-  "whitelistedNonPeerDependencies": [
-    "semver"
-  ],
+  "whitelistedNonPeerDependencies": ["semver"],
   "lib": {
-    "entryFile": "public_api.ts",
+    "entryFile": "src/public_api.ts",
     "umdModuleIds": {
       "semver": "semver"
     }
