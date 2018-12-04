@@ -25,7 +25,7 @@ before_script:
 - npm install -g karma
 - npm install codeclimate-test-reporter
 
-script: ng test -cc --sourcemaps=false --watch=false
+script: ng test --code-coverage --watch=false
 
 after_success:
 - codeclimate-test-reporter < coverage/lcov.info
