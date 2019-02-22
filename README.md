@@ -80,11 +80,11 @@ With a specific version:
 
 ```html
 <!-- will be shown if the admin feature exists and satisfies the version ^1 -->
-<div *showIfFeature="admin ^1">
+<div *showIfFeature="'admin ^1'">
     This is the admin panel
 </div>
 <!-- will be shown if the admin feature exists and satisfies the version ~2.0.1 -->
-<div *showIfFeature="admin ~2.0.1">
+<div *showIfFeature="'admin ~2.0.1'">
     This is the NEW and improved admin panel
 </div>
 ```
